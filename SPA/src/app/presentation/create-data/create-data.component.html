@@ -2,9 +2,9 @@
 
 <p>Generate random data.</p>
 
-<p *ngIf="!somethingelses"><em>Loading...</em></p>
+<p *ngIf="!this.somethingElseService"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="somethingelses" width="50%">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="this.somethingElseService.somethingelses" width="50%">
   <thead>
     <tr>
       <th>Name</th>
@@ -12,10 +12,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let somethingelse of somethingelses">
+    <tr *ngFor="let somethingelse of this.somethingElseService.somethingelses">
       <td>{{ somethingelse.name }}</td>
       <td>
-        <button class="btn btn-primary" (click)="deleteSomethingElse(somethingelse.id)">
+        <button class="btn btn-primary" (click)="this.somethingElseService.deleteSomethingElse(somethingelse.id)">
           Delete
         </button>
       </td>
@@ -25,7 +25,7 @@
             <tr>
               <th>Other Name(s)</th>
               <th>Tag: <input type="text" [(ngModel)]="somethingelse.tag">
-                <button class="btn btn-primary" (click)="updateSomethingElseTag(somethingelse.id,somethingelse.tag)">
+                <button class="btn btn-primary" (click)="this.somethingElseService.updateSomethingElseTag(somethingelse.id,somethingelse.tag)">
                   Update
                   </button>
               </th>
@@ -35,20 +35,20 @@
             <tr *ngFor="let something of somethingelse.somethings">
               <td>{{ something.name }}</td>
               <td>
-                <button class="btn btn-primary" (click)="deleteSomething(somethingelse.id,something.id)">
+                <button class="btn btn-primary" (click)="this.somethingElseService.deleteSomething(somethingelse.id,something.id)">
                   Delete
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary" (click)="addSomething(somethingelse.id)">
+        <button class="btn btn-primary" (click)="this.somethingElseService.addSomething(somethingelse.id)">
           Add to Other Names
         </button>
       </td>
     </tr>
   </tbody>
 </table>
-<button class="btn btn-primary" (click)="addSomethingElse()">
+<button class="btn btn-primary" (click)="this.somethingElseService.addSomethingElse()">
     Add Something
 </button>
